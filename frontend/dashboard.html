@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCash - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link class="stylesheet" href="frontend/css/style.css">
+</head>
+<body class="bg-dashboard min-h-screen flex flex-col justify-between">
+
+    <div id="view-dashboard" class="flex-1 flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-white shadow-sm px-6 py-4 flex justify-between items-center border-b">
+            <h1 class="text-xl font-bold text-indigo-600">ControlCash - Dashboard</h1>
+            <div class="flex items-center gap-4">
+                <span id="user-display" data-testid="user-logged-in" class="text-gray-600 font-medium"></span>
+                <button onclick="handleLogout()" data-testid="btn-logout" class="text-sm bg-red-100 text-red-600 px-3 py-1.5 rounded hover:bg-red-200 font-medium">Sair</button>
+            </div>
+        </nav>
+
+        <main class="flex-1 p-6 max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm h-fit border">
+                <h3 id="form-title" data-testid="form-title" class="text-lg font-bold text-gray-800 mb-4">Nova Transação</h3>
+                <form id="form-transacao" onsubmit="handleSalvarTransacao(event)" class="space-y-4">
+                    <input type="hidden" id="transacao-id">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Descrição</label>
+                        <input type="text" id="t-descricao" required data-testid="input-descricao" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Valor (R$)</label>
+                        <input type="number" step="0.01" id="t-valor" required data-testid="input-valor" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                        <select id="t-tipo" data-testid="select-tipo" class="mt-1 block w-full rounded-md border p-2 text-sm shadow-sm bg-white">
+                            <option value="Receita">Receita</option>
+                            <option value="Despesa">Despesa</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-2 pt-2">
+                        <button type="submit" data-testid="btn-salvar" class="btn-save flex-1 bg-green-600 text-white py-2 px-4 rounded-md font-medium text-sm">Salvar</button>
+                        <button type="button" id="btn-cancelar" onclick="limparFormulario()" class="hidden flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 font-medium text-sm">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="md:col-span-2 flex flex-col gap-6">
+            
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500 border">
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Saldo Atual</p>
+                        <p id="saldo-total" data-testid="total-amount" class="text-2xl font-bold text-gray-800 mt-1">R$ 0,00</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-500 border">
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Total Despesas</p>
+                        <p id="despesa-total" data-testid="expense-amount" class="text-2xl font-bold text-gray-800 mt-1">R$ 0,00</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden flex-1 border">
+                    <div class="p-4 border-b border-gray-100">
+                        <h3 class="font-bold text-gray-800">Histórico de Transações</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-500 text-xs uppercase font-bold border-b border-gray-100">
+                                    <th class="p-4">Descrição</th>
+                                    <th class="p-4">Valor</th>
+                                    <th class="p-4">Tipo</th>
+                                    <th class="p-4 text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-transacoes" data-testid="transactions-list">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-white text-center py-4 text-xs text-gray-400 border-t border-gray-100">
+        Trabalho Final - Teste de Software &copy; 2026
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            verificarAutenticacao();
+            renderizarPainel();
+        });
+    </script>
+</body>
+</html>

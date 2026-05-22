@@ -1,0 +1,87 @@
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f3f4f6; 
+    -webkit-font-smoothing: antialiased;
+}
+
+button, a {
+    transition: all 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4f46e5; 
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Animações e Efeitos dos Botões (Versão Corrigida com Alta Especificidade)
+   ========================================================================== */
+
+/* Força a transição suave em todos os botões do sistema */
+html body button, 
+html body a {
+    transition: all 0.2s ease-in-out !important;
+    display: inline-block;
+}
+
+/* Efeito ao passar o mouse (Hover) - Ignora as travas do Tailwind */
+html body button:hover, 
+html body a:hover {
+    transform: translateY(-3px) !important; /* Sobe o botão levemente */
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3) !important; /* Sombra mais visível */
+    filter: brightness(1.15) !important; /* Dá um brilho na cor */
+}
+
+/* Efeito de clique (Active) - Sensação de botão pressionado */
+html body button:active, 
+html body a:active {
+    transform: translateY(-1px) !important; 
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.15) !important;
+    filter: brightness(0.95) !important;
+}
+
+/* Ajuste específico para os micro-botões da tabela (Editar / Excluir) */
+html body td button:hover {
+    transform: scale(1.08) !important; /* Cresce em vez de subir */
+}
+
+/* Animação de pulso sutil */
+@keyframes pulse-subtle {
+    0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+html body form button[type="submit"]:hover {
+    animation: pulse-subtle 1.5s infinite !important;
+}

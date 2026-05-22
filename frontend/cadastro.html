@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCash - Cadastrar Conta</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link class="stylesheet" href="frontend/css/style.css">
+</head>
+<body class="bg-page min-h-screen flex flex-col justify-between">
+
+    <div class="flex-1 flex items-center justify-center p-4">
+        <div class="card-register p-8 rounded-lg shadow-md w-full max-w-md bg-white">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6" data-testid="register-title">Criar Conta</h2>
+            <form id="form-cadastro" onsubmit="handleCadastro(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                    <input type="text" id="cad-nome" required data-testid="input-register-name" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">E-mail</label>
+                    <input type="email" id="cad-email" required data-testid="input-register-email" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="cad-senha" required data-testid="input-register-password" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+                </div>
+                
+<div>
+
+
+    <label class="block text-sm font-medium text-gray-700">Confirme sua Senha</label>
+    <input type="password" id="cad-confirmar-senha" required data-testid="input-register-confirm-password" class="input-field mt-1 block w-full rounded-md border p-2 text-sm shadow-sm">
+</div>
+                
+                <div id="cad-success" data-testid="register-success-message" class="text-green-600 text-sm font-medium hidden">Cadastro realizado com sucesso! Redirecionando...</div>
+                <div id="cad-error" data-testid="register-error-message" class="text-red-500 text-sm font-medium hidden">Este e-mail já está cadastrado.</div>
+                
+                <button type="submit" data-testid="btn-submit-register" class="btn-success w-full bg-green-600 text-white py-2 px-4 rounded-md transition font-medium text-sm">Registrar Conta</button>
+                
+                <a href="login.html" data-testid="btn-register-back" class="w-full text-center text-sm text-gray-500 hover:underline pt-2 block">Voltar para o Login</a>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-white text-center py-4 text-xs text-gray-400 border-t border-gray-100">
+        Trabalho Final - Teste de Software &copy; 2026
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "trabalhoteste",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.15.0",
+    "jest": "^30.4.2"
+  }
+}
